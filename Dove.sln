@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dove", "Dove\Dove.csproj", "{B69363E2-14A6-4DB3-8C4B-AF689FF0457A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{CC3D9C8E-74D7-4F8A-A5A0-01A607DA28FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B69363E2-14A6-4DB3-8C4B-AF689FF0457A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B69363E2-14A6-4DB3-8C4B-AF689FF0457A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B69363E2-14A6-4DB3-8C4B-AF689FF0457A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B69363E2-14A6-4DB3-8C4B-AF689FF0457A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC3D9C8E-74D7-4F8A-A5A0-01A607DA28FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC3D9C8E-74D7-4F8A-A5A0-01A607DA28FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC3D9C8E-74D7-4F8A-A5A0-01A607DA28FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC3D9C8E-74D7-4F8A-A5A0-01A607DA28FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1891CE0-0310-400A-B376-1B684FC04DB1}
+	EndGlobalSection
+EndGlobal

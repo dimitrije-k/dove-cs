@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Dove cipher</Title>
+    <Authors>Dimitrije Kuzmanovic</Authors>
+    <Description>256-bit key, 128-bit block, balanced Feistel network block cipher</Description>
+    <Copyright>Copyright (c) 2024 Dimitrije Kuzmanovic</Copyright>
+  </PropertyGroup>
+
+</Project>
