@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Dove {
 	public class Auxiliaries {
-		public static readonly uint[] sbox = {
+		private static readonly uint[] sbox = {
 			0xb7e15162, 0x8aed2a6a, 0xbf715880, 0x9cf4f3c7, 0x62e7160f, 0x38b4da56, 0xa784d904, 0x5190cfef,
 			0x324e7738, 0x926cfbe5, 0xf4bf8d8d, 0x8c31d763, 0xda06c80a, 0xbb1185eb, 0x4f7c7b57, 0x57f59584,
 			0x90cfd47d, 0x7c19bb42, 0x158d9554, 0xf7b46bce, 0xd55c4d79, 0xfd5f24d6, 0x613c31c3, 0x839a2ddf,
@@ -38,28 +38,28 @@ namespace Dove {
 			0x0478aa52, 0x0e3fe233, 0x5a322edf, 0x147bbdb5, 0x27aa2ad3, 0xcb0f7d6e, 0xd381cd6a, 0xc35a1d24,
 		};
 
-		public static readonly ulong ln2 = 0xb17217f7d1cf79ab;
+		private static readonly ulong ln2 = 0xb17217f7d1cf79ab;
 
-		public static void StoreInSpan(ulong x, Span<byte> s) {
+		internal static void StoreInSpan(ulong x, Span<byte> s) {
 			for (int i = 0; i < 8; ++i) {
 				s[i] = (byte) x;
 				x >>= 8;
 			}
 		}
 
-		public static void StoreInSpan(ulong x, Span<uint> s) {
+		internal static void StoreInSpan(ulong x, Span<uint> s) {
 			s[0] = (uint) x;
 			s[1] = (uint) (x >> 32);
 		}
 
-		public static void StoreInSpan(uint x, Span<byte> s) {
+		internal static void StoreInSpan(uint x, Span<byte> s) {
 			for (int i = 0; i < 4; ++i) {
 				s[i] = (byte) x;
 				x >>= 8;
 			}
 		}
 
-		public static ulong ApplySBox(ulong x) {
+		private static ulong ApplySBox(ulong x) {
 			Span<byte> bytes = stackalloc byte[8];
 			StoreInSpan(x, bytes);
 
@@ -73,7 +73,7 @@ namespace Dove {
 			return a | (ulong) b << 32;
 		}
 
-		public static byte[] ApplySBox(byte[] bytes) {
+		private static byte[] ApplySBox(byte[] bytes) {
 			for (int i = 0; i < 8; ++i) {
 				uint x = 0;
 
@@ -88,7 +88,7 @@ namespace Dove {
 			return bytes;
 		}
 
-		public static ulong Interlace(ulong x) {
+		private static ulong Interlace(ulong x) {
 			Span<byte> bytes = stackalloc byte[8];
 			StoreInSpan(x, bytes);
 
@@ -103,7 +103,7 @@ namespace Dove {
 			return x;
 		}
 
-		public static byte[] Interlace8(byte[] bytes) {
+		private static byte[] Interlace8(byte[] bytes) {
 			Span<byte> tmp = stackalloc byte[32];
 
 			for (int i = 0; i < 4; ++i) {
@@ -121,7 +121,7 @@ namespace Dove {
 			return bytes;
 		}
 
-		public static byte[] Interlace16(byte[] bytes) {
+		private static byte[] Interlace16(byte[] bytes) {
 			Span<byte> tmp = stackalloc byte[32];
 
 			for (int i = 0; i < 4; ++i) {
@@ -137,7 +137,7 @@ namespace Dove {
 			return bytes;
 		}
 
-		public static ulong Rotate(ulong x) {
+		private static ulong Rotate(ulong x) {
 			Span<uint> uints = stackalloc uint[2];
 			StoreInSpan(x, uints);
 
@@ -147,7 +147,7 @@ namespace Dove {
 			return uints[0] | (ulong) uints[1] << 32;
 		}
 
-		public static ulong Hash(ulong x, Key key) {
+		internal static ulong Hash(ulong x, Key key) {
 			x = ApplySBox(x) ^ key.Long(0);
 			x = ApplySBox(Interlace(x)) ^ key.Long(1);
 			x = ApplySBox(Rotate(x)) ^ key.Long(2);
@@ -156,7 +156,7 @@ namespace Dove {
 			return ~(x + ln2);
 		}
 
-		public static Key NextKey(Key old) {
+		internal static Key NextKey(Key old) {
 			var bytes = new byte[32];
 			for (int i = 0; i < 32; ++i)
 				bytes[i] = old[i];
